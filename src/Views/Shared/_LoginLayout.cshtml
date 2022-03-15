@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap4 Dashboard Template">
+    <meta name="author" content="ParkerThemes">
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+    @*    <link rel="shortcut icon" href="~/theme/img/fav.png" />*@
+
+    <!-- Title -->
+    <title>Milkyfie - Login</title>
+
+    <!-- *************
+        ************ Common Css Files *************
+    ************ -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/theme/css/bootstrap.min.css" />
+
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="~/theme/css/main.css" />
+
+    <link rel="stylesheet" href="~/js/toastr/toastr.min.css">
+    <link rel="stylesheet" href="~/css/custom.css">
+    <style type="text/css">
+        input.parsley-success,
+        select.parsley-success,
+        textarea.parsley-success {
+            color: #468847;
+            background-color: #DFF0D8;
+            border: 1px solid #D6E9C6;
+        }
+
+        input.parsley-error,
+        select.parsley-error,
+        textarea.parsley-error {
+            color: #B94A48;
+            background-color: #F2DEDE;
+            border: 1px solid #EED3D7;
+        }
+
+        .parsley-errors-list {
+            margin: 2px 0 3px;
+            padding: 0;
+            list-style-type: none;
+            font-size: 0.9em;
+            line-height: 0.9em;
+            opacity: 0;
+            color: #B94A48;
+            transition: all .3s ease-in;
+            -o-transition: all .3s ease-in;
+            -moz-transition: all .3s ease-in;
+            -webkit-transition: all .3s ease-in;
+        }
+
+            .parsley-errors-list.filled {
+                opacity: 1;
+            }
+    </style>
+</head>
+<body>
+
+
+    @RenderBody()
+  
+    <script src="~/js/jquery.js"></script>
+    <script src="~/theme/js/jquery.min.js"></script>
+    <script src="~/js/coreLib.js"></script>
+    <link rel="stylesheet" href="~/js/toastr/toastr.js.map">
+    <script src="~/js/toastr/toastr.min.js"></script>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

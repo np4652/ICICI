@@ -1,0 +1,59 @@
+﻿@model ICICI.AppCode.Reops.Entities.BankSetting
+@{
+    if (Model != null)
+    {
+
+
+    }
+
+}
+<!-- Row start -->
+<div class="row gutters">
+    <form id="frmproduct" action="/Bank/SaveSetting" method="post">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <input type="hidden" value="@Model.Id" name="@nameof(Model.Id)" />
+                        <input type="hidden" value="@Model.UserId" name="@nameof(Model.UserId)" />
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.AccountNo)</label>
+                                <input type="text" name="@nameof(Model.AccountNo)" value="@Model.AccountNo" class="form-control" placeholder="@nameof(Model.AccountNo)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.Password)</label>
+                                <input type="text" name="@nameof(Model.Password)" value="@Model.Password" class="form-control" placeholder="@nameof(Model.Password)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.CustomerId)</label>
+                                <input type="text" name="@nameof(Model.CustomerId)" value="@(Model.CustomerId??string.Empty)" class="form-control" placeholder="@nameof(Model.CustomerId)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.Duration)</label>
+                                <input type="number" maxlength="6" name="@nameof(Model.Duration)" value="@Model.Duration" class="form-control" placeholder="@nameof(Model.Duration)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.IsActive)</label>
+                                <input type="checkbox" name="@nameof(Model.IsActive)" value="@Html.Raw(Model.IsActive ? "true" : "false")" @Html.Raw(Model.IsActive ? "checked" : "") />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lglg-2 col-md-2 col-sm-2 col-12">
+                            <div class="btn-group">
+                                <button class="btn btn-lg btn-primary" style="margin-top:20px" id="btnSubmit" type="submit">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

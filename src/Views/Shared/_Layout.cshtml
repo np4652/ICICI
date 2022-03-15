@@ -1,0 +1,283 @@
+﻿@using ICICI.AppCode.Extensions;
+<!DOCTYPE html>
+@{
+    string role = User.GetLoggedInUserRoles(); //Convert.ToString(ViewData["Role"]);
+}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap4 Dashboard Template">
+    <meta name="author" content="ParkerThemes">
+    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+
+    <!-- Title -->
+    <title>ICICI</title>
+
+
+    <!-- *************
+        ************ Common Css Files *************
+    ************ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="~/theme/css/bootstrap.min.css">
+    <!-- Icomoon Font Icons css -->
+    <link rel="stylesheet" href="~/theme/fonts/style.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/theme/css/main.css">
+
+    <link rel="stylesheet" href="~/js/toastr/toastr.min.css">
+
+
+    <!-- *************
+        ************ Vendor Css Files *************
+    ************ -->
+    <!-- DateRange css -->
+    <link rel="stylesheet" href="~/theme/vendor/daterange/daterange.css" />
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="~/theme/vendor/datatables/dataTables.bs4.css" />
+    <link rel="stylesheet" href="~/theme/vendor/datatables/dataTables.bs4-custom.css" />
+    <link href="~/theme/vendor/datatables/buttons.bs.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-brand">
+                <a href="index.html" class="logo">
+                    <img src="~/img/logo.png" alt="Le Rouge Admin Dashboard" />
+                </a>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">General</li>
+                        <li class="active">
+                            <a href="/dashboard">
+                                <i class="icon-devices_other"></i>
+                                <span class="menu-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Bank/Setting">
+                                <i class="icon-devices_other"></i>
+                                <span class="menu-text">Bank Setting</span>
+                            </a>
+                        </li>
+                        @if (role.Equals("admin", StringComparison.OrdinalIgnoreCase) || role.Equals("1"))
+                        {
+
+                            <li>
+                                <a href="/User/Index/Consumer">
+                                    <i class="icon-devices_other"></i>
+                                    <span class="menu-text">User</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="icon-calendar1"></i>
+                                    <span class="menu-text">Job</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="/myDashboard" target="_blank"> All Jobs</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:s.scheduleJob('{startDate:01-10-2021,endDate:31-10-2021}')"> Schedule</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:s.pauseTask()">Paused</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:s.resumeTask()">Resume</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:s.scheduleTestJob()"> Schedule Test Job</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- sidebar menu end -->
+
+            </div>
+            <!-- Sidebar content end -->
+
+        </nav>
+        <!-- Sidebar wrapper end -->
+        <!-- Page content start  -->
+        <div class="page-content">
+
+            <!-- Header start -->
+            <header class="header">
+                <div class="toggle-btns">
+                    <a id="toggle-sidebar" href="#">
+                        <i class="icon-list"></i>
+                    </a>
+                    <a id="pin-sidebar" href="#">
+                        <i class="icon-list"></i>
+                    </a>
+                </div>
+                <div class="header-items">
+                    <!-- Custom search start -->
+                    <div class="custom-search">
+                        <input type="text" class="search-query" placeholder="Search here ...">
+                        <i class="icon-search1"></i>
+                    </div>
+                    <!-- Custom search end -->
+                    <!-- Header actions start -->
+                    <ul class="header-actions">
+
+                        <li class="dropdown">
+                            <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+                                <span class="user-name">User</span>
+                                <span class="avatar">
+                                    <img src="~/theme/img/user.png" alt="avatar">
+                                    <span class="status busy"></span>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userSettings">
+                                <div class="header-profile-actions">
+                                    <div class="header-user-profile">
+                                        <div class="header-user">
+                                            <img src="~/theme/img/user.png" alt="Admin Template">
+                                        </div>
+                                        <p>User</p>
+                                    </div>
+                                    <a href="~/Account/Logout"><i class="icon-log-out1"></i> Sign Out</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- Header actions end -->
+                </div>
+            </header>
+            <!-- Header end -->
+            <!-- Page header start -->
+            <div class="page-header">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">Admin Dashboard</li>
+                </ol>
+
+                <ul class="app-actions">
+                    <li>
+                        <a href="#" id="reportrange">
+                            <span class="range-text"></span>
+                            <i class="icon-chevron-down"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Account/Logout">
+                            <i class="icon-export"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Page header end -->
+            <!-- Main container start -->
+            @RenderBody()
+            <!-- Main container end -->
+
+        </div>
+        <!-- Page content end -->
+
+    </div>
+
+
+
+    <!--**************************
+        **************************
+            **************************
+                        Required JavaScript Files
+            **************************
+        **************************
+    **************************-->
+    <!-- Required jQuery first, then Bootstrap Bundle JS -->
+    <script src="~/theme/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/theme/js/bootstrap.bundle.min.js"></script>
+    <script src="~/theme/js/moment.js"></script>
+
+
+    <!-- *************
+        ************ Vendor Js Files *************
+    ************* -->
+    <!-- Slimscroll JS -->
+    <!-- Daterange -->
+    <script src="~/theme/vendor/daterange/daterange.js"></script>
+    <script src="~/theme/vendor/daterange/custom-daterange.js"></script>
+
+    <!-- Polyfill JS -->
+    <script src="~/theme/vendor/polyfill/polyfill.min.js"></script>
+
+    <!-- Apex Charts -->
+    @*		<script src="~/theme/vendor/apex/apexcharts.min.js"></script>*@
+    @*		<script src="~/theme/vendor/apex/admin/visitors.js"></script>
+        <script src="~/theme/vendor/apex/admin/deals.js"></script>
+        <script src="~/theme/vendor/apex/admin/income.js"></script>
+        <script src="~/theme/vendor/apex/admin/customers.js"></script>*@
+
+
+
+    <script src="~/theme/js/bootstrap.bundle.min.js"></script>
+    <script src="~/theme/js/moment.js"></script>
+
+
+    <!-- *************
+        ************ Vendor Js Files *************
+    ************* -->
+    <!-- Slimscroll JS -->
+    <script src="~/theme/vendor/slimscroll/slimscroll.min.js"></script>
+    <script src="~/theme/vendor/slimscroll/custom-scrollbar.js"></script>
+
+    <!-- Daterange -->
+    <!-- Data Tables -->
+    <script src="~/theme/vendor/datatables/dataTables.min.js"></script>
+    <script src="~/theme/vendor/datatables/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Data tables -->
+    <script src="~/theme/vendor/datatables/custom/custom-datatables.js"></script>
+    <script src="~/theme/vendor/datatables/custom/fixedHeader.js"></script>
+
+    <!-- Download / CSV / Copy / Print -->
+    <script src="~/theme/vendor/datatables/buttons.min.js"></script>
+    <script src="~/theme/vendor/datatables/jszip.min.js"></script>
+    @*		<script src="~/theme/vendor/datatables/pdfmake.min.js"></script>*@
+    <script src="~/theme/vendor/datatables/vfs_fonts.js"></script>
+    <script src="~/theme/vendor/datatables/html5.min.js"></script>
+    <script src="~/theme/vendor/datatables/buttons.print.min.js"></script>
+
+
+    <script src="~/js/coreLib.js"></script>
+    <link rel="stylesheet" href="~/js/toastr/toastr.js.map">
+    <script src="~/js/toastr/toastr.min.js"></script>
+    <script src="~/js/app.js"></script>
+    @*    <script src="~/js/component.alert.js"></script>
+        <script src="~/js/component.modal.js"></script>*@
+    <!-- Main JS -->
+    <script src="~/theme/js/main.js"></script>
+    <script>
+        (() => {
+            $('body').on('click', 'input[type="checkbox"]', function () {
+                if ($(this).prop('checked')) {
+                    $(this).attr('value', true);
+                } else {
+                    $(this).attr('value', false);
+                }
+            });
+            $('body').on('submit', 'form', function () {
+                ajaxFormSubmit(this)
+            });
+        })();
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

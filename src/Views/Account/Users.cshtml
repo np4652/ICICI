@@ -1,0 +1,118 @@
+﻿@model ICICI.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Users";
+    Layout = "_LayOut";
+}
+<div class="main-container">
+    <!-- Row start -->
+    <div class="row gutters">
+        <div id="frmcat" class="w-100">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white h6">
+                        @Model.Role
+                        <input type="hidden" value="@Model.Role" id="hdnroleid" />
+                        <div class="float-right">  <button id="btnNew" class="btnaddUser btn btn-info">New</button></div>
+                    </div>
+                    <div class="card-body">
+
+                    
+                            <div class="table-container">
+                                <div class="table-responsive">
+                                    <table id="basicExample" class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    #
+                                                </th>
+                                                <th>
+                                                    User Name
+                                                </th>
+
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Mobile
+                                                </th>
+                                                <th>
+                                                    EmailID
+                                                </th>
+                                                <th>
+                                                    Balance
+                                                </th>
+                                                <th>
+                                                    Address
+                                                </th>
+                                                <th>
+                                                    Pincode
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                       
+
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+<script>
+
+    $(document).ready(function(){
+
+    getUsers();
+    })
+
+     $('.btnaddUser').click(function(){
+           Q.preloader.load();
+              $.ajax({
+                type: 'post',
+                url: '/Master/UserForm',
+                 data:{role:$('#hdnroleid').val()},
+                success: function (data) {
+                    console.log(data)
+                Q.alert({
+                    title: "Add User",
+                    body:data,
+                    width : '900px',
+                    });
+                      Q.preloader.remove();
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    console.log(data);
+                        Q.notify(-1, 'An error occurred.');
+                         Q.preloader.remove();
+                },
+            });
+    });
+    function getUsers(){
+        debugger;
+         Q.preloader.load();
+         $.ajax({
+               type: 'post',
+                url: '/Account/UsersDetails',
+               data:{role:$('#hdnroleid').val()},
+                success: function (data) {
+                      $('tbody').html(data);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    console.log(data);
+                       Q.notify(-1, 'An error occurred.');
+                },
+          });
+          Q.preloader.remove();
+    }
+
+
+</script>
+}

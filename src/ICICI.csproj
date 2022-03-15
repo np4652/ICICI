@@ -1,0 +1,234 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AppCode\Migrations\MigrationManager.cs~RF44830a2.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="{d37e2a3e-8545-3a39-9f4f-31827c9124ab}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>d37e2a3e-8545-3a39-9f4f-31827c9124ab</Guid>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="FluentMigrator" Version="3.3.1" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.3.1" />
+    <PackageReference Include="Hangfire" Version="1.7.28" />
+    <PackageReference Include="linq2db" Version="3.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog.Config" Version="4.7.13" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-light-300.svg" />
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-light-300.woff2" />
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\siteadmin\assets\fonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\siteadmin\assets\fonts\Flaticon.svg" />
+    <None Include="wwwroot\siteadmin\assets\fonts\Flaticon.woff2" />
+    <None Include="wwwroot\siteadmin\assets\images\icons\preloader.svg" />
+    <None Include="wwwroot\siteadmin\assets\js\appear.js" />
+    <None Include="wwwroot\siteadmin\assets\js\bootstrap-select.min.js" />
+    <None Include="wwwroot\siteadmin\assets\js\bootstrap.min.js" />
+    <None Include="wwwroot\siteadmin\assets\js\isotope.js" />
+    <None Include="wwwroot\siteadmin\assets\js\jquery-ui.js" />
+    <None Include="wwwroot\siteadmin\assets\js\jquery.bootstrap-touchspin.js" />
+    <None Include="wwwroot\siteadmin\assets\js\jquery.fancybox.js" />
+    <None Include="wwwroot\siteadmin\assets\js\jquery.js" />
+    <None Include="wwwroot\siteadmin\assets\js\lazyload.js" />
+    <None Include="wwwroot\siteadmin\assets\js\owl.js" />
+    <None Include="wwwroot\siteadmin\assets\js\popper.min.js" />
+    <None Include="wwwroot\siteadmin\assets\js\script.js" />
+    <None Include="wwwroot\siteadmin\assets\js\scrollbar.js" />
+    <None Include="wwwroot\siteadmin\assets\js\swiper.min.js" />
+    <None Include="wwwroot\siteadmin\assets\js\TweenMax.min.js" />
+    <None Include="wwwroot\siteadmin\assets\js\wow.js" />
+    <None Include="wwwroot\theme\flags\1x1\au.svg" />
+    <None Include="wwwroot\theme\flags\1x1\de.svg" />
+    <None Include="wwwroot\theme\flags\1x1\hk.svg" />
+    <None Include="wwwroot\theme\flags\1x1\ru.svg" />
+    <None Include="wwwroot\theme\flags\1x1\tz.svg" />
+    <None Include="wwwroot\theme\fonts\icomoonf33b.svg" />
+    <None Include="wwwroot\theme\img\docs\doc.svg" />
+    <None Include="wwwroot\theme\img\docs\pdf.svg" />
+    <None Include="wwwroot\theme\img\docs\ppt.svg" />
+    <None Include="wwwroot\theme\img\docs\xls.svg" />
+    <None Include="wwwroot\theme\img\docs\zip.svg" />
+    <None Include="wwwroot\theme\img\notification-danger.svg" />
+    <None Include="wwwroot\theme\img\notification-info.svg" />
+    <None Include="wwwroot\theme\img\notification-success.svg" />
+    <None Include="wwwroot\theme\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\theme\js\coming-soon.js" />
+    <None Include="wwwroot\theme\js\jquery-ui.min.js" />
+    <None Include="wwwroot\theme\js\jquery.easing.1.3.js" />
+    <None Include="wwwroot\theme\js\jquery.min.js" />
+    <None Include="wwwroot\theme\js\main.js" />
+    <None Include="wwwroot\theme\js\moment.js" />
+    <None Include="wwwroot\theme\vendor\apex\admin\customers.js" />
+    <None Include="wwwroot\theme\vendor\apex\admin\deals.js" />
+    <None Include="wwwroot\theme\vendor\apex\admin\income.js" />
+    <None Include="wwwroot\theme\vendor\apex\admin\visitors.js" />
+    <None Include="wwwroot\theme\vendor\apex\apexcharts.min.js" />
+    <None Include="wwwroot\theme\vendor\apex\crm\compare-sales.js" />
+    <None Include="wwwroot\theme\vendor\apex\crm\compare-sales1.js" />
+    <None Include="wwwroot\theme\vendor\apex\crm\earnings.js" />
+    <None Include="wwwroot\theme\vendor\apex\ecommerce-dashboard\avg-handle-time.js" />
+    <None Include="wwwroot\theme\vendor\apex\ecommerce-dashboard\by-channel.js" />
+    <None Include="wwwroot\theme\vendor\apex\ecommerce-dashboard\by-device.js" />
+    <None Include="wwwroot\theme\vendor\apex\ecommerce-dashboard\orders-visits-bouncerate.js" />
+    <None Include="wwwroot\theme\vendor\apex\ecommerce-dashboard\sales.js" />
+    <None Include="wwwroot\theme\vendor\apex\ecommerce-dashboard\sales2.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\area\basic-area-graph-spline.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\area\basic-area-graph-stacked.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\area\basic-area-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\bar\basic-bar-graph-grouped.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\bar\basic-bar-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\bar\basic-bar-negative-values.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\bar\basic-bar-stack-graph-full-width.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\bar\basic-bar-stack-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\bubble\basic-bubble-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\candlestick\basic-candlestick-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\column\basic-column-graph-datalables.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\column\basic-column-graph-rotated-labels.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\column\basic-column-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\column\basic-column-stack-graph-fullheight.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\column\basic-column-stack-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\line\basic-line-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\line\line-with-data-labels.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\line\stepline.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\mixed\line-area-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\mixed\line-column-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\mixed\line-scatter-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\mixed\multiple-yaxis.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-donut-graph-gradient.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-donut-graph-monochrome-gradient.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-donut-graph-monochrome.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-donut-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-pie-graph-gradient.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-pie-graph-monochrome-gradient.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-pie-graph-monochrome.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\pie\basic-pie-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\examples\radial\basic-radial-graph.js" />
+    <None Include="wwwroot\theme\vendor\apex\sales\column-visitors.js" />
+    <None Include="wwwroot\theme\vendor\apex\sales\mixed-line-column.js" />
+    <None Include="wwwroot\theme\vendor\bs-select\bs-select.min.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\core\main.min.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\custom-external-draggable-calendar.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\custom-google-calendar.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\custom-list-view.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\custom-selectable-calendar.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\custom-week-numbers.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\custom.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\daygrid\main.min.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\google-calendar\main.min.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\interaction\main.min.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\list\main.min.js" />
+    <None Include="wwwroot\theme\vendor\calendar\js\timegrid\main.min.js" />
+    <None Include="wwwroot\theme\vendor\circliful\circliful.custom.js" />
+    <None Include="wwwroot\theme\vendor\circliful\circliful.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\buttons.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\buttons.print.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\custom\custom-datatables.js" />
+    <None Include="wwwroot\theme\vendor\datatables\custom\fixedHeader.js" />
+    <None Include="wwwroot\theme\vendor\datatables\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\dataTables.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\html5.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\jszip.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\pdfmake.min.js" />
+    <None Include="wwwroot\theme\vendor\datatables\vfs_fonts.js" />
+    <None Include="wwwroot\theme\vendor\datepicker\js\custom-picker.js" />
+    <None Include="wwwroot\theme\vendor\datepicker\js\picker.date.js" />
+    <None Include="wwwroot\theme\vendor\datepicker\js\picker.js" />
+    <None Include="wwwroot\theme\vendor\daterange\custom-daterange.js" />
+    <None Include="wwwroot\theme\vendor\daterange\daterange.js" />
+    <None Include="wwwroot\theme\vendor\gallery\baguetteBox.js" />
+    <None Include="wwwroot\theme\vendor\gallery\custom-gallery.js" />
+    <None Include="wwwroot\theme\vendor\gallery\plugins.js" />
+    <None Include="wwwroot\theme\vendor\input-masks\cleave-custom.js" />
+    <None Include="wwwroot\theme\vendor\input-masks\cleave-phone.js" />
+    <None Include="wwwroot\theme\vendor\input-masks\cleave.min.js" />
+    <None Include="wwwroot\theme\vendor\input-tags\tagsinput-custom.js" />
+    <None Include="wwwroot\theme\vendor\input-tags\tagsinput.min.js" />
+    <None Include="wwwroot\theme\vendor\input-tags\typeahead.js" />
+    <None Include="wwwroot\theme\vendor\jqcloud\custom-jqcloud.js" />
+    <None Include="wwwroot\theme\vendor\jqcloud\jqcloud-1.0.4.min.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\africa-mill.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\custom-denmark.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\map-africa.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\map-europe.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\map-usa.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\regions-selection.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\resions-with-labels.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\world-map-gdp.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\custom\world-map-markers.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\de-merc.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\dk-mill.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\europe-mill.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\gdp-data.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\jquery-jvectormap-2.0.3.min.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\usa.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\us_aea.js" />
+    <None Include="wwwroot\theme\vendor\jvectormap\world-mill-en.js" />
+    <None Include="wwwroot\theme\vendor\lobipanel\js\lobipanel-custom.js" />
+    <None Include="wwwroot\theme\vendor\lobipanel\js\lobipanel.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\areaChart.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\barColors.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\barNoAxis.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\dayData.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\donutColors.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\donutFormatter.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\morrisBarChart.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\negativeValues.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\stackedBarChart.js" />
+    <None Include="wwwroot\theme\vendor\morris\custom\xLabelsDiagonally.js" />
+    <None Include="wwwroot\theme\vendor\morris\morris.min.js" />
+    <None Include="wwwroot\theme\vendor\morris\raphael-min.js" />
+    <None Include="wwwroot\theme\vendor\notify\notify-custom.js" />
+    <None Include="wwwroot\theme\vendor\notify\notify.js" />
+    <None Include="wwwroot\theme\vendor\particles\particles-custom-error.js" />
+    <None Include="wwwroot\theme\vendor\particles\particles-custom.js" />
+    <None Include="wwwroot\theme\vendor\particles\particles.min.js" />
+    <None Include="wwwroot\theme\vendor\polyfill\polyfill.min.js" />
+    <None Include="wwwroot\theme\vendor\prism\prism.js" />
+    <None Include="wwwroot\theme\vendor\range-slider\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\theme\vendor\range-slider\rangeSlider-custom.js" />
+    <None Include="wwwroot\theme\vendor\rating\raty-custom.js" />
+    <None Include="wwwroot\theme\vendor\rating\raty.js" />
+    <None Include="wwwroot\theme\vendor\slimscroll\custom-scrollbar.js" />
+    <None Include="wwwroot\theme\vendor\slimscroll\slimscroll.min.js" />
+    <None Include="wwwroot\theme\vendor\summernote\summernote-bs4.js" />
+    <None Include="wwwroot\theme\vendor\wizard\jquery.steps.custom.js" />
+    <None Include="wwwroot\theme\vendor\wizard\jquery.steps.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ErrorLogs\" />
+    <Folder Include="wwwroot\images\banner\" />
+    <Folder Include="wwwroot\images\thumbnail\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiRequestUtility\ApiRequestUtility.csproj" />
+  </ItemGroup>
+
+</Project>

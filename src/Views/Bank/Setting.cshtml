@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Users";
+    Layout = "_LayOut";
+}
+<div class="main-container">
+    <!-- Row start -->
+    <div class="row gutters">
+        <div id="frmcat" class="w-100">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white h6">
+                        <div class="float-right">  <button id="btnNew" class="btn btn-info">New</button></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table id="basicExample" class="table custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Account No</th>
+                                            <th>Password</th>
+                                            <th>CustomerId</th>
+                                            <th>Duration(in min)</th>
+                                            <th>IsActive</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#btnNew').click(() => dialog.bankSetting(-1));
+            loadData();
+        })
+        function loadData() {
+            Q.preloader.load();
+            $.ajax({
+                type: 'post',
+                url: '/Bank/_Setting',
+                success: function (data) {
+                    $('tbody').html(data);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    console.log(data);
+                    Q.notify(-1, 'An error occurred.');
+                },
+            });
+            Q.preloader.remove();
+        }
+    </script>
+}
