@@ -70,7 +70,7 @@ namespace ICICI.Controllers
             }
             if (string.IsNullOrEmpty(model.RoleName))
             {
-                model.RoleName = "Consumer";
+                model.RoleName = "User";
             }
             var user = new ApplicationUser
             {

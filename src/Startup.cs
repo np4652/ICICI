@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
 using System.Collections.Generic;
+using ICICI.AppCode.CustomAttributes;
 
 namespace ICICI
 {
@@ -115,7 +116,10 @@ namespace ICICI
             app.UseAuthorization();
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
-            app.UseHangfireDashboard("/mydashboard");
+            app.UseHangfireDashboard("/mydashboard", new DashboardOptions
+            {
+                Authorization = new[] { new HangfireAuthorizationFilter() }
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
