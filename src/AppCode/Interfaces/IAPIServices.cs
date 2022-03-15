@@ -7,6 +7,6 @@ namespace ICICI.AppCode.Interfaces
     public interface IAPIServices:IDisposable
     {
         Task<FetchStatement> FetchStatementAsync(string url);
-        Task PostStatementAsync(string url, PostStatetmentRequest postStatementRequest);
+        Task PostStatementAsync(PostStatetmentRequest postStatementRequest);
     }
 }

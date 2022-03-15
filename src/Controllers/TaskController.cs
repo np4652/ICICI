@@ -30,8 +30,6 @@ namespace ICICI.Controllers
             _bankService = bankService;
             Connectionstring = connectionString.connectionString;
             _apiConfig = apiConfig;
-            string postUrl = _apiConfig.Where(x => x.Name.Equals("postStatement", StringComparison.OrdinalIgnoreCase)).Select(x => x.Url).FirstOrDefault();
-            string fetchUrl = _apiConfig.Where(x => x.Name.Equals("fetchStatement", StringComparison.OrdinalIgnoreCase)).Select(x => x.Url).FirstOrDefault();
         }
 
         public ActionResult ScheduleFetchStatement(string startDate, string endDate)
@@ -47,7 +45,6 @@ namespace ICICI.Controllers
 
         public async Task FetchStatement(string startDate, string endDate)
         {
-            //StringBuilder sb = new StringBuilder("http://13.126.191.141/api/cibicici/Fetch/statement?token=0a5169ce92e3d30135074cb70b76fe38&login_id={loginId}&login_pass={pass}&accountno={accountNo}&startDate={startDate}&endDate={endDate}");
             StringBuilder sb = new StringBuilder(_apiConfig.Where(x => x.Name.Equals("fetchStatement", StringComparison.OrdinalIgnoreCase)).Select(x => x.Url).FirstOrDefault());
             var res = new FetchStatement();
             var response = await _bankService.GetBankSetting(0, 0, "", true);
@@ -65,7 +62,7 @@ namespace ICICI.Controllers
                     var preFetch = await GetFetchRecordFromDb(item.AccountNo, DateTime.Now.ToString("dd MMM yyyy"));
                     var newData = res.data.Where(x => !preFetch.Any(y => y.tranID == x.Tran_ID));
                     string postUrl = _apiConfig.Where(x => x.Name.Equals("postStatement", StringComparison.OrdinalIgnoreCase)).Select(x => x.Url).FirstOrDefault();
-                    PostStatement(postUrl, new PostStatetmentRequest { AccountNo = item.AccountNo, data = newData.ToList() });
+                    PostStatement(new PostStatetmentRequest { AccountNo = item.AccountNo, data = newData.ToList() });
                     SaveFetchResponse(newData.ToList(), item.AccountNo);
                 }
             }
@@ -83,10 +80,10 @@ namespace ICICI.Controllers
             }
         }
 
-        public async Task PostStatement(string url,PostStatetmentRequest postStatementRequest)
+        public async Task PostStatement(PostStatetmentRequest postStatementRequest)
         {
             await Task.Delay(0);
-             _apiServices.PostStatementAsync(url, postStatementRequest);
+            _apiServices.PostStatementAsync(postStatementRequest);
         }
 
         public async Task<IEnumerable<FetchStatementLog>> GetFetchRecordFromDb(string AccountNo, string date)
@@ -135,7 +132,12 @@ namespace ICICI.Controllers
             }
             SaveFetchResponse(data, "123456789");
         }
+        #endregion
+        public IActionResult ScheduleTestTask1(PostStatetmentRequest postStatementRequest)
+        {
+            _apiServices.PostStatementAsync(postStatementRequest);
+            return Ok("ok");
+        }
     }
-    #endregion
 }
 
