@@ -9,7 +9,7 @@ namespace ICICI.AppCode.Interfaces
     {
         Task<IResponse> AddBankSetting(BankSetting bankSetting);
         Task<IResponse<List<BankSetting>>> GetBankSetting(int id, int userId, string Role = "",bool forJobOnly = false);
-        Task<IResponse> SaveFetchResponse(Datum data, string AccountNo);
+        Task<IResponse> SaveFetchResponse(TransactionDetail data, string AccountNo);
         Task<IEnumerable<FetchStatementLog>> GetFetchRecordFromDB(string AccountNo, string date);
     }
 }

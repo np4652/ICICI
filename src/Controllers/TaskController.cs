@@ -60,7 +60,7 @@ namespace ICICI.Controllers
                     sb.Replace("{endDate}", endDate ?? DateTime.Now.ToString("dd-MM-yyyy"));
                     res = await _apiServices.FetchStatementAsync(sb.ToString());
                     var preFetch = await GetFetchRecordFromDb(item.AccountNo, DateTime.Now.ToString("dd MMM yyyy"));
-                    var newData = res.data.Where(x => !preFetch.Any(y => y.tranID == x.Tran_ID));
+                    var newData = res.data.Where(x => !preFetch.Any(y => y.tranID == x.Transaction_ID));
                     string postUrl = _apiConfig.Where(x => x.Name.Equals("postStatement", StringComparison.OrdinalIgnoreCase)).Select(x => x.Url).FirstOrDefault();
                     PostStatement(new PostStatetmentRequest { AccountNo = item.AccountNo, data = newData.ToList() });
                     SaveFetchResponse(newData.ToList(), item.AccountNo);
@@ -68,7 +68,7 @@ namespace ICICI.Controllers
             }
         }
 
-        public async Task SaveFetchResponse(List<Datum> data, string AccountNo)
+        public async Task SaveFetchResponse(List<TransactionDetail> data, string AccountNo)
         {
             await Task.Delay(0);
             if (data != null)
@@ -122,12 +122,12 @@ namespace ICICI.Controllers
 
         public async Task TestTask()
         {
-            var data = new List<Datum>();
+            var data = new List<TransactionDetail>();
             for (int i = 1; i < 100; i++)
             {
-                data.Add(new Datum
+                data.Add(new TransactionDetail
                 {
-                    Tran_ID = string.Concat("tansaction_", i.ToString())
+                    Transaction_ID = string.Concat("tansaction_", i.ToString())
                 });
             }
             SaveFetchResponse(data, "123456789");

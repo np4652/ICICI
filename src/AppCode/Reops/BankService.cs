@@ -28,10 +28,10 @@ namespace ICICI.AppCode.Reops
             };
         }
 
-        public async Task<IResponse> SaveFetchResponse(Datum data, string AccountNo)
+        public async Task<IResponse> SaveFetchResponse(TransactionDetail data, string AccountNo)
         {
             string sqlQuery = @"insert into FetchStatementLog(AccountNo,tranID,EntryOn) Values (@AccountNo,@tranID,GetDate())";
-            var res = await _dapper.ExecuteAsync(sqlQuery, new { AccountNo, tranID = data.Tran_ID }, commandType: CommandType.Text);
+            var res = await _dapper.ExecuteAsync(sqlQuery, new { AccountNo, tranID = data.Transaction_ID }, commandType: CommandType.Text);
             return new Response
             {
                 StatusCode = res != -1 ? ResponseStatus.Success : ResponseStatus.Failed,

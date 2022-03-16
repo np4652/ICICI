@@ -35,7 +35,28 @@ namespace ICICI.AppCode.Reops
             {
                 { "API_KEY",apiConfig.APIKey}
             };
-            string reponse = await AppWebRequest.O.PostJsonDataUsingHWRTLS(apiConfig.Url, postStatementRequest, headers).ConfigureAwait(false);
+            var newList = new List<ICICTransactionDetail>();
+            postStatementRequest.data.ForEach(obj => {
+                newList.Add(new ICICTransactionDetail
+                {
+                    TransactionId = obj.Transaction_ID,
+                    TransactionAmount = obj.Transaction_Amount_INR_,
+                    TransactionType = obj.Cr_Dr,
+                    TransactionDate = obj.Txn_Posted_Date,
+                    TransactionPostedDate = obj.Txn_Posted_Date,
+                    AvailableBalance = obj.Available_Balance_INR_,
+                    ChequeRefNo = obj.ChequeNo_,
+                    SlNo = obj.No_,
+                    TransactionRemarks = obj.Description,
+                    ValueDate = obj.Value_Date
+                });
+            });
+            var PostICICIStatementRequest = new PostICICIStatementRequest
+            {
+                AccountNo = postStatementRequest.AccountNo,
+                data = newList
+            };
+            string reponse = await AppWebRequest.O.PostJsonDataUsingHWRTLS(apiConfig.Url, PostICICIStatementRequest, headers).ConfigureAwait(false);
         }
     }
 }

@@ -8,6 +8,6 @@ namespace ICICI.AppCode.Reops.Entities
     public class PostStatetmentRequest
     {
         public string AccountNo { get; set; }
-        public List<Datum> data { get; set; }
+        public List<TransactionDetail> data { get; set; }
     }
 }
