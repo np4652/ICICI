@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace ICICI.AppCode.Interfaces
 {
-    public interface IAPIServices:IDisposable
+    public interface IAPIServices : IDisposable
     {
         Task<FetchStatement> FetchStatementAsync(string url);
-        Task PostStatementAsync(PostStatetmentRequest postStatementRequest);
+        Task PostStatementAsync(string baseUrl, string apiKey, PostStatetmentRequest postStatementRequest);
     }
 }

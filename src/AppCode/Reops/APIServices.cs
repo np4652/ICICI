@@ -28,35 +28,47 @@ namespace ICICI.AppCode.Reops
             return result ?? new FetchStatement();
         }
 
-        public async Task PostStatementAsync(PostStatetmentRequest postStatementRequest)
+        public async Task PostStatementAsync(string baseUrl, string apiKey, PostStatetmentRequest postStatementRequest)
         {
-            var apiConfig = _apiConfig.Where(x => x.Name.Equals("postStatement", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            //var apiConfig = _apiConfig.Where(x => x.Name.Equals("postStatement", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
             var headers = new Dictionary<string, string>
             {
-                { "API_KEY",apiConfig.APIKey}
+                //{ "API_KEY",apiConfig.APIKey}
+                { "API_KEY",apiKey}
             };
             var newList = new List<ICICTransactionDetail>();
-            postStatementRequest.data.ForEach(obj => {
+            postStatementRequest.data.ForEach(obj =>
+            {
+                decimal withdrawl = 0;
+                decimal deposite = 0;
+                decimal.TryParse(obj.Deposit_Amt_INR_ ?? string.Empty, out deposite);
+                decimal.TryParse(obj.Withdrawal_Amt_INR_ ?? string.Empty, out withdrawl);
                 newList.Add(new ICICTransactionDetail
                 {
-                    TransactionId = obj.Transaction_ID,
-                    TransactionAmount = obj.Transaction_Amount_INR_,
-                    TransactionType = obj.Cr_Dr,
-                    TransactionDate = obj.Txn_Posted_Date,
-                    TransactionPostedDate = obj.Txn_Posted_Date,
-                    AvailableBalance = obj.Available_Balance_INR_,
-                    ChequeRefNo = obj.ChequeNo_,
-                    SlNo = obj.No_,
-                    TransactionRemarks = obj.Description,
+                    TransactionId = obj.Transaction_ID ?? obj.Tran_ID,
+                    TransactionAmount = obj.Transaction_Amount_INR_ ?? Convert.ToString(withdrawl + deposite),
+                    TransactionType = obj.Cr_Dr ?? (withdrawl > 0 ? "dr" : "cr"),
+                    TransactionDate = obj.Txn_Posted_Date ?? obj.Transaction_Date,
+                    TransactionPostedDate = obj.Txn_Posted_Date ?? obj.Transaction_Posted_Date,
+                    AvailableBalance = obj.Available_Balance_INR_ ?? obj.Balance_INR_,
+                    ChequeRefNo = obj.ChequeNo_ ?? obj.Cheque_No_Ref_No_,
+                    SlNo = obj.No_ ?? string.Empty,
+                    TransactionRemarks = obj.Description ?? obj.Transaction_Remarks,
                     ValueDate = obj.Value_Date
                 });
             });
-            var PostICICIStatementRequest = new PostICICIStatementRequest
+            if (newList != null && newList.Count > 0)
             {
-                AccountNo = postStatementRequest.AccountNo,
-                data = newList
-            };
-            string reponse = await AppWebRequest.O.PostJsonDataUsingHWRTLS(apiConfig.Url, PostICICIStatementRequest, headers).ConfigureAwait(false);
+                var PostICICIStatementRequest = new PostICICIStatementRequest
+                {
+                    AccountNo = postStatementRequest.AccountNo,
+                    data = newList
+                };
+                //apiConfig.Url
+                if(!baseUrl.Contains("/ProcessICICIStatement"))
+                    baseUrl = string.Concat(baseUrl, "/ProcessICICIStatement");
+                string reponse = await AppWebRequest.O.PostJsonDataUsingHWRTLS(baseUrl, PostICICIStatementRequest, headers).ConfigureAwait(false);
+            }
         }
     }
 }

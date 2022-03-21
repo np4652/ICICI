@@ -1,18 +1,22 @@
 ﻿@model List<ICICI.AppCode.Reops.Entities.BankSetting>
-    @{
-    int sr=0;
-    foreach(var item in Model){
-    sr++;
-    <tr data-setting-id="@item.Id">
-        <td>@sr</td>
-        <td><span class="btn-edit btn-link">@item.AccountNo</span></td>
-        <td>@item.Password</td>
-        <td>@item.CustomerId</td>
-        <td>@item.Duration</td>
-        <td>@item.IsActive</td>
-    </tr>
+@{
+    int sr = 0;
+    foreach (var item in Model)
+    {
+        sr++;
+        <tr data-setting-id="@item.Id">
+            <td>@sr</td>
+            <td><span class="btn-edit btn-link">@item.ProjectName</span></td>
+            <td>@item.BaseUrl</td>
+            <td>@item.APIKey</td>
+            <td>@item.AccountNo</td>
+            <td>@item.Password</td>
+            <td>@item.CustomerId</td>
+            <td>@item.Duration</td>
+            <td>@item.IsActive</td>
+        </tr>
     }
-    }
-    <script>
-        $('.btn-edit').click(e => dialog.bankSetting($(e.currentTarget).closest('tr').data().settingId));
-    </script>
+}
+<script>
+    $('.btn-edit').click(e => dialog.bankSetting($(e.currentTarget).closest('tr').data().settingId));
+</script>

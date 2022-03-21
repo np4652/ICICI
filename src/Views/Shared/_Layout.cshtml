@@ -8,11 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Meta -->
-    <meta name="description" content="Responsive Bootstrap4 Dashboard Template">
-    <meta name="author" content="ParkerThemes">
-    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+    @*<link rel="icon" href="~/img/favicon.png" type="image/x-icon">*@
 
     <!-- Title -->
     <title>ICICI</title>
@@ -88,7 +84,8 @@
                                             <a href="/myDashboard" target="_blank"> All Jobs</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:s.scheduleJob('{startDate:01-10-2021,endDate:31-10-2021}')"> Schedule</a>
+                                            @*<a href="javascript:s.scheduleJob({startDate:'01-10-2021',endDate:'31-10-2021'})"> Schedule</a>*@
+                                            <a href="javascript:s.scheduleJob()"> Schedule</a>
                                         </li>
                                         <li>
                                             <a href="javascript:s.pauseTask()">Paused</a>

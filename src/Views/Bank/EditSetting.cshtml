@@ -18,6 +18,24 @@
                         <input type="hidden" value="@Model.UserId" name="@nameof(Model.UserId)" />
                         <div class="col-sm-6">
                             <div class="form-group">
+                                <label for="inputName">@nameof(Model.ProjectName)</label>
+                                <input type="text" name="@nameof(Model.ProjectName)" value="@Model.ProjectName" class="form-control" placeholder="@nameof(Model.ProjectName)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.BaseUrl)</label>
+                                <input type="text" name="@nameof(Model.BaseUrl)" value="@Model.BaseUrl" class="form-control" placeholder="@nameof(Model.BaseUrl)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.APIKey)</label>
+                                <input type="text" name="@nameof(Model.APIKey)" value="@Model.APIKey" class="form-control" placeholder="@nameof(Model.APIKey)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
                                 <label for="inputName">@nameof(Model.AccountNo)</label>
                                 <input type="text" name="@nameof(Model.AccountNo)" value="@Model.AccountNo" class="form-control" placeholder="@nameof(Model.AccountNo)" />
                             </div>

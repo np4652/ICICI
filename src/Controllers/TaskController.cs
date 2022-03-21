@@ -24,7 +24,7 @@ namespace ICICI.Controllers
         private readonly string Connectionstring;
         private readonly List<APIConfig> _apiConfig;
 
-        public TaskController(IHttpContextAccessor httpContext, IUserService users, IAPIServices apiServices, IBankService bankService, IConnectionString connectionString, List<APIConfig> apiConfig)
+        public TaskController(IAPIServices apiServices, IBankService bankService, IConnectionString connectionString, List<APIConfig> apiConfig)
         {
             _apiServices = apiServices;
             _bankService = bankService;
@@ -34,12 +34,9 @@ namespace ICICI.Controllers
 
         public ActionResult ScheduleFetchStatement(string startDate, string endDate)
         {
-            startDate = startDate ?? DateTime.Now.ToString("dd-MM-yyyy");
-            endDate = endDate ?? DateTime.Now.ToString("dd-MM-yyyy");
+            startDate = string.IsNullOrEmpty(startDate) || string.IsNullOrWhiteSpace(startDate) ? null : startDate;
+            endDate = string.IsNullOrEmpty(endDate) || string.IsNullOrWhiteSpace(endDate) ? null : endDate;
             RecurringJob.AddOrUpdate(() => FetchStatement(startDate, endDate), Cron.Minutely);
-            // BackgroundJob.Enqueue(() => ScheduleFetchStatement(startDate, endDate));
-            // ScheduleFetchStatement(startDate, endDate);
-            //return Ok("Scheduled");
             return Json("Scheduled");
         }
 
@@ -60,9 +57,9 @@ namespace ICICI.Controllers
                     sb.Replace("{endDate}", endDate ?? DateTime.Now.ToString("dd-MM-yyyy"));
                     res = await _apiServices.FetchStatementAsync(sb.ToString());
                     var preFetch = await GetFetchRecordFromDb(item.AccountNo, DateTime.Now.ToString("dd MMM yyyy"));
-                    var newData = res.data.Where(x => !preFetch.Any(y => y.tranID == x.Transaction_ID));
-                    string postUrl = _apiConfig.Where(x => x.Name.Equals("postStatement", StringComparison.OrdinalIgnoreCase)).Select(x => x.Url).FirstOrDefault();
-                    PostStatement(new PostStatetmentRequest { AccountNo = item.AccountNo, data = newData.ToList() });
+                    var newData = res.data.Where(x => !preFetch.Any(y => y.tranID == x.Transaction_ID || y.tranID == x.Tran_ID));
+                    //string postUrl = item.BaseUrl; //_apiConfig.Where(x => x.Name.Equals("postStatement", StringComparison.OrdinalIgnoreCase)).Select(x => x.Url).FirstOrDefault();
+                    PostStatement(item.BaseUrl, item.APIKey,new PostStatetmentRequest { AccountNo = item.AccountNo, data = newData.ToList() });
                     SaveFetchResponse(newData.ToList(), item.AccountNo);
                 }
             }
@@ -80,10 +77,10 @@ namespace ICICI.Controllers
             }
         }
 
-        public async Task PostStatement(PostStatetmentRequest postStatementRequest)
+        public async Task PostStatement(string baseUrl, string apiKey, PostStatetmentRequest postStatementRequest)
         {
             await Task.Delay(0);
-            _apiServices.PostStatementAsync(postStatementRequest);
+            _apiServices.PostStatementAsync(baseUrl, apiKey, postStatementRequest);
         }
 
         public async Task<IEnumerable<FetchStatementLog>> GetFetchRecordFromDb(string AccountNo, string date)
@@ -133,9 +130,9 @@ namespace ICICI.Controllers
             SaveFetchResponse(data, "123456789");
         }
         #endregion
-        public IActionResult ScheduleTestTask1(PostStatetmentRequest postStatementRequest)
+        public IActionResult ScheduleTestTask1(string baseUrl, string apiKey, PostStatetmentRequest postStatementRequest)
         {
-            _apiServices.PostStatementAsync(postStatementRequest);
+            _apiServices.PostStatementAsync(baseUrl, apiKey, postStatementRequest);
             return Ok("ok");
         }
     }

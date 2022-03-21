@@ -23,7 +23,7 @@ var serviceProperty = {
 };
 
 ((services) => {
-    services.scheduleJob = function ({ startDate = '', endDate = '' }) {
+    services.scheduleJob = function ({ startDate = '', endDate = '' } = { startDate : null, endDate : null }) {
         $.post('/Task/ScheduleFetchStatement', { startDate: startDate, endDate: endDate })
             .done(result => { Q.notify(1, 'Job Scheduled successfully.'); }).fail(xhr => {
                 console.log(xhr.responseText);

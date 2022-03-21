@@ -112,7 +112,8 @@
                     Q.notify(result.statusCode, result.responseText);
                     $('input').val('');
                     $('.field-validation-valid').remove();
-                    getUserss();
+                    $('.ui-dialog-titlebar-close').click();
+                    loadData();
                 }
                 else {
                     Q.preloader.remove();

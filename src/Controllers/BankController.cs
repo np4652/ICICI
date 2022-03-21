@@ -55,7 +55,6 @@ namespace ICICI.Controllers
         public async Task<IActionResult> SaveSetting(BankSetting bankSetting)
         {
             bankSetting.UserId = User.GetLoggedInUserId<int>();
-            bankSetting.CustomerId = bankSetting.CustomerId ?? string.Empty;
             var response = await _bankService.AddBankSetting(bankSetting);
             return Json(response);
         }

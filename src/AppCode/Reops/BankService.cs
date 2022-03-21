@@ -31,7 +31,12 @@ namespace ICICI.AppCode.Reops
         public async Task<IResponse> SaveFetchResponse(TransactionDetail data, string AccountNo)
         {
             string sqlQuery = @"insert into FetchStatementLog(AccountNo,tranID,EntryOn) Values (@AccountNo,@tranID,GetDate())";
-            var res = await _dapper.ExecuteAsync(sqlQuery, new { AccountNo, tranID = data.Transaction_ID }, commandType: CommandType.Text);
+            var res = await _dapper.ExecuteAsync(sqlQuery,
+                new
+                {
+                    AccountNo,
+                    tranID = string.Concat((data.Transaction_ID ?? string.Empty)," " ,(data.Tran_ID ?? string.Empty))
+                }, commandType: CommandType.Text);
             return new Response
             {
                 StatusCode = res != -1 ? ResponseStatus.Success : ResponseStatus.Failed,
@@ -48,7 +53,9 @@ namespace ICICI.AppCode.Reops
         public async Task<IResponse<List<BankSetting>>> GetBankSetting(int id, int userId, string Role = "", bool forJobOnly = false)
         {
             var response = new Response<List<BankSetting>>();
-            string sqlQuery = @"select * from BankSetting(nolock) where (Id = @id or @id=0) and userId=@userId ";
+            string sqlQuery = @"Declare @Role varchar(30);
+                                select @Role = r.Name from UserRoles u(nolock) inner join ApplicationRole r(nolock) on r.Id=u.RoleId where u.UserId=@UserId
+                                select * from BankSetting(nolock) where (Id = @id or @id=0) and (userId=@userId or @Role='Admin')";
             if (forJobOnly)
                 sqlQuery = @"select * from BankSetting(nolock) where IsActive=1 and  DateDiff(MINUTE,ISNULL(LastUpdatedOn,GETDATE()-1),GetDate()) > = ISNULL(duration,0)
                              Update BankSetting Set LastUpdatedOn = GETDATE() where IsActive = 1 and DateDiff(MINUTE, ISNULL(LastUpdatedOn, GETDATE()-1),GetDate()) > = ISNULL(duration, 0)";
