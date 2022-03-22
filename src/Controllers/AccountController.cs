@@ -58,7 +58,7 @@ namespace ICICI.Controllers
         }
 
         [HttpPost]
-        [ValidateAjaxAttribute]
+        [ValidateAjax]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             Response response = new Response();
@@ -68,10 +68,7 @@ namespace ICICI.Controllers
             {
                 return Json(response);
             }
-            if (string.IsNullOrEmpty(model.RoleName))
-            {
-                model.RoleName = "User";
-            }
+            model.RoleName = "User";
             var user = new ApplicationUser
             {
                 UserId = Guid.NewGuid().ToString(),

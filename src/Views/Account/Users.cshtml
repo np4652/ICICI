@@ -8,15 +8,13 @@
     <div class="row gutters">
         <div id="frmcat" class="w-100">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="card">
-                    <div class="card-header bg-primary text-white h6">
+                <div class="card card-outline card-outline-red">
+                    <div class="card-header">
                         @Model.Role
                         <input type="hidden" value="@Model.Role" id="hdnroleid" />
                         <div class="float-right">  <button id="btnNew" class="btnaddUser btn btn-info">New</button></div>
                     </div>
                     <div class="card-body">
-
-                    
                             <div class="table-container">
                                 <div class="table-responsive">
                                     <table id="basicExample" class="table custom-table">

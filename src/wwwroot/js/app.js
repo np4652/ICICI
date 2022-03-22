@@ -11,7 +11,20 @@
             console.log(xhr.responseText);
             Q.notify(-1, 'An error occurred.');
         }).always(() => { });
-    }
+    };
+    dialog.user = function (id = 0) {
+        Q.preloader.load();
+        $.post('/User/Edit', { id: id, role: 'User' }).done(result => {
+            Q.alert({
+                title: "Add User",
+                body: result,
+                width: '900px',
+            });
+        }).fail(xhr => {
+            console.log(xhr.responseText);
+            Q.notify(-1, 'An error occurred.');
+        }).always(() => Q.preloader.remove());
+    };
 })(dialog || (dialog = {}));
 var services;
 var serviceProperty = {
@@ -23,7 +36,7 @@ var serviceProperty = {
 };
 
 ((services) => {
-    services.scheduleJob = function ({ startDate = '', endDate = '' } = { startDate : null, endDate : null }) {
+    services.scheduleJob = function ({ startDate = '', endDate = '' } = { startDate: null, endDate: null }) {
         $.post('/Task/ScheduleFetchStatement', { startDate: startDate, endDate: endDate })
             .done(result => { Q.notify(1, 'Job Scheduled successfully.'); }).fail(xhr => {
                 console.log(xhr.responseText);

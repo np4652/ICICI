@@ -8,15 +8,15 @@
         <tr>
             <td>@i</td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                <span class="btn-link cursor-pointer btnaddUser">@Html.DisplayFor(modelItem => item.Name)</span>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-              <td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
         </tr>
@@ -29,3 +29,9 @@ else
         <td colspan="3">No Records Found</td>
     </tr>
 }
+<script>
+    $('.btnaddUser').click(e => {
+        let _id = $(e.currentTarget).closest('tr').data().userId;
+        dialog.user(_id);
+    });
+</script>

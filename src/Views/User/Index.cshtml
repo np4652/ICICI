@@ -7,8 +7,8 @@
     <div class="row gutters">
         <div id="frmcat" class="w-100">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="card">
-                    <div class="card-header bg-primary text-white h6">
+                <div class="card card-outline card-outline-red">
+                    <div class="card-header">
                         <div class="float-right">  <button id="btnNew" class="btnaddUser btn btn-info">New</button></div>
                     </div>
                     <div class="card-body">
@@ -17,22 +17,11 @@
                                 <table id="basicExample" class="table custom-table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                #
-                                            </th>
-                                            <th>
-                                                User Name
-                                            </th>
-
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Mobile
-                                            </th>
-                                            <th>
-                                                EmailID
-                                            </th>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>User Name</th>
+                                            <th>Mobile</th>
+                                            <th>EmailID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -40,9 +29,6 @@
                                 </table>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -54,29 +40,30 @@
         $(document).ready(function () {
             loadData();
         });
-        $('.btnaddUser').click(function () {
-            Q.preloader.load();
-            $.ajax({
-                type: 'post',
-                url: '/User/Edit',
-                data: { role: 'User' },
-                success: function (data) {
-                    console.log(data)
-                    Q.alert({
-                        title: "Add User",
-                        body: data,
-                        width: '900px',
-                    });
-                    Q.preloader.remove();
-                },
-                error: function (data) {
-                    console.log('An error occurred.');
-                    console.log(data);
-                    Q.notify(-1, 'An error occurred.');
-                    Q.preloader.remove();
-                },
-            });
-        });
+        $('.btnaddUser').click(() => dialog.user());
+        //$('.btnaddUser').click(function () {
+        //    Q.preloader.load();
+        //    $.ajax({
+        //        type: 'post',
+        //        url: '/User/Edit',
+        //        data: { role: 'User' },
+        //        success: function (data) {
+        //            console.log(data)
+        //            Q.alert({
+        //                title: "Add User",
+        //                body: data,
+        //                width: '900px',
+        //            });
+        //            Q.preloader.remove();
+        //        },
+        //        error: function (data) {
+        //            console.log('An error occurred.');
+        //            console.log(data);
+        //            Q.notify(-1, 'An error occurred.');
+        //            Q.preloader.remove();
+        //        },
+        //    });
+        //});
         function loadData() {
             Q.preloader.load();
             $.ajax({

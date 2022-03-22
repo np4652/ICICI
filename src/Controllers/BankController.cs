@@ -13,22 +13,23 @@ using Hangfire;
 using ICICI.AppCode.CustomAttributes;
 using ICICI.AppCode.Helper;
 using Hangfire.SqlServer;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace ICICI.Controllers
 {
+    [Authorize]
     public class BankController : Controller
     {
-        private IUserService _users;
-        private IAPIServices _apiServices;
         private IBankService _bankService;
-        private readonly string Connectionstring;
+        //private IUserService _users;
+        //private IAPIServices _apiServices;
+        //private readonly string Connectionstring;
         public BankController(IHttpContextAccessor httpContext, IUserService users, IAPIServices apiServices, IBankService bankService, IConnectionString connectionString)
         {
-            _users = users;
-            _apiServices = apiServices;
             _bankService = bankService;
-            Connectionstring = connectionString.connectionString;
+            //_users = users;
+            //_apiServices = apiServices;
+            //Connectionstring = connectionString.connectionString;
         }
         public IActionResult Setting()
         {

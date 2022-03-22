@@ -1,13 +1,11 @@
 ﻿using Dapper;
 using ICICI.AppCode.DAL;
-using ICICI.AppCode.Extensions;
 using ICICI.AppCode.Interfaces;
 using ICICI.AppCode.Reops.Entities;
 using ICICI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace ICICI.AppCode.Reops

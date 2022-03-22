@@ -1,7 +1,6 @@
 ﻿using ICICI.AppCode.Interfaces;
 using ICICI.AppCode.Reops.Entities;
 using ICICI.AppCode.DAL;
-using ICICI.AppCode.Interfaces;
 using ICICI.Models;
 using System;
 using System.Collections.Generic;

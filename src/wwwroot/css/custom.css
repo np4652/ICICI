@@ -46,3 +46,43 @@ a {
     color: white !important;
   
 }
+.text-ellipsis {
+    max-width: 136px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.cursor-pointer {
+    cursor: pointer
+}
+
+.btn-link {
+    color: #007bff;
+}
+.btn-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.card-outline .card-header {
+    padding: 0.25rem 0.75rem!important;
+    border-top: 2px solid;
+    background:none!important;
+}
+.card-outline .card-body {
+    padding: 0.2rem 0.75rem !important;
+}
+
+.card-outline .table-container {
+    padding: 0 !important;
+}
+.card-outline-red .card-header {
+    border-top-color: #ee0000 !important;
+}
+
+.card-outline-red .btn {
+    background-color: #ee0000 !important;
+    color:#fff!important;
+    border:none;
+}

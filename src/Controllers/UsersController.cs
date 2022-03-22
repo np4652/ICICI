@@ -3,32 +3,24 @@ using ICICI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using ICICI.AppCode.Extensions;
-using System.Linq;
-using ICICI.AppCode.Reops.Entities;
-using System.Collections.Generic;
-using System.Text;
-using System;
-using Hangfire;
-using ICICI.AppCode.CustomAttributes;
 using ICICI.AppCode.Helper;
-using Hangfire.SqlServer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ICICI.Controllers
 {
-    [CanBePaused]
+    [Authorize]
     public class UserController : Controller
     {
         private IUserService _users;
-        private IAPIServices _apiServices;
-        private IBankService _bankService;
-        private readonly string Connectionstring;
+        //private IAPIServices _apiServices;
+        //private IBankService _bankService;
+        //private readonly string Connectionstring;
         public UserController(IHttpContextAccessor httpContext, IUserService users, IAPIServices apiServices, IBankService bankService, IConnectionString connectionString)
         {
             _users = users;
-            _apiServices = apiServices;
-            _bankService = bankService;
-            Connectionstring = connectionString.connectionString;
+            //_apiServices = apiServices;
+            //_bankService = bankService;
+            //Connectionstring = connectionString.connectionString;
         }
 
         [Route("User/Index/{role}")]

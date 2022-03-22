@@ -12,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Dapper.SqlMapper;
-using ICICI.AppCode.Reops.Entities;
 using ICICI.Models;
 
 namespace ICICI.AppCode.DAL
