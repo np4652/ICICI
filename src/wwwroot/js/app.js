@@ -7,10 +7,7 @@
                 body: result,
                 width: '900px',
             });
-        }).fail(xhr => {
-            console.log(xhr.responseText);
-            Q.notify(-1, 'An error occurred.');
-        }).always(() => { });
+        }).fail(xhr => Q.renderError(xhr)).always(() => Q.preloader.remove());
     };
     dialog.user = function (id = 0) {
         Q.preloader.load();
@@ -20,10 +17,7 @@
                 body: result,
                 width: '900px',
             });
-        }).fail(xhr => {
-            console.log(xhr.responseText);
-            Q.notify(-1, 'An error occurred.');
-        }).always(() => Q.preloader.remove());
+        }).fail(xhr => Q.renderError(xhr)).always(() => Q.preloader.remove());
     };
 })(dialog || (dialog = {}));
 var services;

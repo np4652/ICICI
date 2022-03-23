@@ -762,7 +762,16 @@ function printDiv(divName) {
                 $('span[data-valmsg-for="' + validationErrors[i].key + '"]').text(validationErrors[i].errors[0]);
             }
         }
-    }
+        else if (xhr.status === 401) {
+            let currentUrl = window.location.href;
+            let _url = new URL(currentUrl);
+            window.location.href = "/Account/Login?ReturnUrl=" + _url.pathname;
+        }
+        else {
+            console.log(xhr.responseText);
+            Q.notify(-1, 'An error occurred.');
+        }
+    };
 })(Q || (Q = {}));
 
 
